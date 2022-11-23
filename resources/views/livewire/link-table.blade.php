@@ -6,7 +6,7 @@
                     <thead class="bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Slug
+                            Short
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Url
@@ -29,7 +29,9 @@
                     @foreach ($links as $link)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                {{ $link->slug }}
+                                <a href="/{{ $link->slug }}" class="text-indigo-600" >
+                                    {{ url($link->slug) }}
+                                </a>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-gray-500">{{ Str::limit($link->url, 40) }}</div>
@@ -63,7 +65,6 @@
         </div>
     </div>
     {{ $links->links() }}
-
     <div>
         @if ($links->isEmpty())
             <p class="text-gray-800 font-bold text-2xl text-center my-10">No links found!</p>
